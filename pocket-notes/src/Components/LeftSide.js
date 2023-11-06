@@ -2,12 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import CreateNotes from './CreateNotes';
 import './LeftSide.css';
 
-function LeftSide() {
-
+function LeftSide({onProfileClick }) {
     
+
   const [showCreateNotes, setShowCreateNotes] = useState(false);
   const containerRef = useRef(null);
-  const createNotesRef = useRef(null);
 
   const handleCreateNotes = () => {
     setShowCreateNotes(true);
@@ -34,7 +33,6 @@ function LeftSide() {
 
   const storedNotes = JSON.parse(localStorage.getItem('notesData'));
 
-
   return (
       <div ref={containerRef} className='wrapperLeftSide' >
         <h1>Pocket Notes</h1>
@@ -42,7 +40,7 @@ function LeftSide() {
       {showCreateNotes && <CreateNotes setShowCreateNotes={setShowCreateNotes} />}
       <div className='NoteGroups'>
           {storedNotes && storedNotes.map((note) => (
-            <div className='profile'>
+            <div className='profile' onClick={()=>onProfileClick(note.groupName, note.buttonClicked)}>
             <div className='logo' style={{backgroundColor:note.buttonClicked}}>
             {note.groupName.length >= 2 ? (
                 <span>{note.groupName[0]}{note.groupName.slice(-1)}</span>
@@ -50,7 +48,7 @@ function LeftSide() {
                 <span>{note.groupName}</span>
               )}
             </div>
-            <div className='head'><h1>{note.groupName}</h1></div>
+            <div className='head'><h1>{note.groupName.slice(0,15)}</h1></div>
               
               </div>
           ))}

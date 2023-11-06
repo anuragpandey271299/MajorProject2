@@ -1,24 +1,23 @@
 .wrapperLeftSide{
-    width: fit-content;
-}
-.logo{
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-}
-
-.profile{
-    display: flex;
-    margin-top: 30px;
+    width: 350px;
 }
 .logo{
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
 }
 
+.profile{
+    display: flex;
+    margin-top: 20px;
+}
+
+
 .logo span{
-    font-size: 40px;
+    font-size: 30px;
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -34,5 +33,6 @@
 }
 
 .head h1{
-    display: inline-block;
+    font-size: 30px;
+    font-weight: 400;
 }

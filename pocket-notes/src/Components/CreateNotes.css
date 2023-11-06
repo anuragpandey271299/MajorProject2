@@ -6,6 +6,8 @@
     border: 5px solid black;
     padding: 15px;
     border-radius: 10px;
+    z-index: 1;
+    background-color: white;
 }
 .colors{
     display: flex;
