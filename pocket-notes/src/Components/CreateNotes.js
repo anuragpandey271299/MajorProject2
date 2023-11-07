@@ -6,6 +6,7 @@ function CreateNotes(props) {
     const [buttonClicked, setButtonClicked] = useState('');
     const [notes, setNotes] = useState([]);
     const [errorMessage, setErrorMessage]=useState('')
+    const [colorError, setColorError] = useState('');
     useEffect(() => {
         const storedNotes = localStorage.getItem('notesData');
         if (storedNotes) {
@@ -24,15 +25,15 @@ function CreateNotes(props) {
     const handleCreateNote = (e) => {
         e.preventDefault();
         const newNote = { groupName, buttonClicked, id: Date.now() + Math.random() };
-        if (validateGroupName()) {
+        validateGroupName();
+        validateColor();
+        if (validateGroupName() && validateColor()) {
             const updatedNotes = [...notes, newNote];
             localStorage.setItem('notesData', JSON.stringify(updatedNotes));
             setNotes(updatedNotes);
             props.setShowCreateNotes(false);
         }
         console.log(newNote.id)
-        setGroupName('');
-        setButtonClicked('');
      };
      
 
@@ -41,21 +42,36 @@ function CreateNotes(props) {
             setErrorMessage('Enter group name')
             return false;
         }
-        return true;
-        
+        setGroupName(groupName);
+        setErrorMessage('')
+        return true;  
     }
+
+    const validateColor = () => {
+        if (buttonClicked === '') {
+          setColorError('Select a color');
+          return false;
+        }
+        return true;
+      };
+      const handleOverlayClick = () => {
+        props.setShowCreateNotes(false);
+      };
 
   return (
     <>
-      <form className='CreateNotesFrom' onSubmit={handleCreateNote}>
+    <div className='overlay' onClick={handleOverlayClick}>
+      <form className='CreateNotesForm' onSubmit={handleCreateNote} onClick={(e) => e.stopPropagation()}>
         <h1>Create New Notes Group</h1>
+        <div className='groupName'>
         <label>Group Name</label>
         <input
           placeholder='Enter group name'
           value={groupName}
           onChange={handleGroupNameChange}
         />
-        <p>{errorMessage}</p>
+        </div>
+        <p className='error1'>{errorMessage}</p>
         <div className='colors'>
           <h1>Choose colour</h1>
           <div className='divs'>
@@ -85,8 +101,10 @@ function CreateNotes(props) {
             ></div>
           </div>
         </div>
+          <p>{colorError}</p><br/>
         <button >Create</button>
       </form>
+      </div>
     </>
   );
 }

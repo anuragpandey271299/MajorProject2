@@ -1,5 +1,6 @@
 .wrapperLeftSide{
     width: 350px;
+    padding: 15px;
 }
 .logo{
     display: flex;
@@ -35,4 +36,15 @@
 .head h1{
     font-size: 30px;
     font-weight: 400;
+}
+.wrapperLeftSide button{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+button:hover, .profile{
+    cursor: pointer;
 }

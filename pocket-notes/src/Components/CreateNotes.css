@@ -1,13 +1,9 @@
-.CreateNotesFrom {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.CreateNotesForm {
     border: 5px solid black;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
-    z-index: 1;
     background-color: white;
+    z-index: 2000;
 }
 .colors{
     display: flex;
@@ -25,3 +21,48 @@
 .divs div:hover{
     cursor: pointer;
 }
+.CreateNotesForm p{
+    color: red;
+}
+.error1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.colors{
+    margin-top: 20px;
+}
+.colors h1{
+    font-size: 16px;
+    font-weight: normal;
+}
+.CreateNotesForm input{
+    margin-left: 25px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 350px;
+}
+.CreateNotesForm button{
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    float: right;
+    padding: 5px;
+    border-radius: 10px;
+}
+.groupName{
+    margin-top: 20px;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+  }
+  

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './NotesArea.css';
 import arrow from './images/arrow.png';
 
@@ -13,10 +13,21 @@ function NotesArea({ groupName, buttonClicked, id }) {
     'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
   ];
   const month = monthName[currDate.getMonth()];
-    let hrs = currDate.getHours() >= 12 ? currDate.getHours() - 12 : (currDate.getHours() < 10 ? `0${currDate.getHours()}`: currDate.getHours());
+    let hrs = currDate.getHours() >= 12 ? currDate.getHours() - 12 : currDate.getHours();
     let period = currDate.getHours() >= 12 ? 'PM' : 'AM';
+    if(hrs<10){
+        hrs=`0${hrs}`
+    }
     let minutes = currDate.getMinutes() < 10 ? `0${currDate.getMinutes()}` : currDate.getMinutes();
-  const handleArrowClick = () => {
+  
+    useEffect(() => {
+        const storedMessages = localStorage.getItem('messages');
+        if (storedMessages) {
+          setDisplayedMessages(JSON.parse(storedMessages));
+        }
+      }, []);
+  
+    const handleArrowClick = () => {
     if (message.trim() !== '') {
       const newMessage = {
         content: message,
@@ -30,8 +41,14 @@ function NotesArea({ groupName, buttonClicked, id }) {
         [id]: [...(prevMessages[id] || []), newMessage],
       }));
       setMessage('');
+      const updatedMessages = {
+        ...displayedMessages,
+        [id]: [...(displayedMessages[id] || []), newMessage],
+      };
+      localStorage.setItem('messages', JSON.stringify(updatedMessages));
     }
   }
+  
   
   const handleEnterPress = (event) => {
     if (event.key === 'Enter') {

@@ -40,7 +40,7 @@ function LeftSide({onProfileClick}) {
       <button onClick={handleCreateNotes}>Create Note Group</button>
       {showCreateNotes && <CreateNotes setShowCreateNotes={setShowCreateNotes} />}
       <div className='NoteGroups'>
-          {storedNotes && storedNotes.map((note) => (
+          {storedNotes && storedNotes.slice().reverse().map((note) => (
             <div className='profile' onClick={()=>onProfileClick(note.groupName, note.buttonClicked, note.id)}>
             <div className='logo' style={{backgroundColor:note.buttonClicked}}>
             {note.groupName.length >= 2 ? (

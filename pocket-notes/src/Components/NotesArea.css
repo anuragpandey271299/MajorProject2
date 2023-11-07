@@ -9,9 +9,7 @@
     height: 100vh;
     width: calc(100vw - 350px);
     position: relative;
-    border: 2px solid black;
     background-color: #F7ECDC;
-    position: relative;
 }
 .NotesArea textarea{
     width: 100%;
@@ -26,6 +24,9 @@
     right: 0;
     margin: 10px;
 }
+#arrow:hover{
+    cursor: pointer;
+}
 .messageArea{
     display: flex;
     margin: 30px;
@@ -37,4 +38,8 @@
 .messageArea h4{
     margin-left: 60px;
     font-size: 25px;
+}
+.NotesArea .profile, .NotesArea textarea{
+    padding: 20px;
+    background-color: #E8E8E8;
 }
