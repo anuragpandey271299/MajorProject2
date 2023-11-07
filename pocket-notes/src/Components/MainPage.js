@@ -1,4 +1,3 @@
-// MainPage.js
 import React, { useState } from 'react';
 import LeftSide from './LeftSide';
 import RightSide from './RightSide';
@@ -8,9 +7,9 @@ import './MainPage.css';
 function MainPage() {
   const [rightSideContent, setRightSideContent] = useState(null);
 
-  const handleProfileClick = (groupName, buttonClicked) => {
+  const handleProfileClick = (groupName, buttonClicked ,id) => {
     setRightSideContent(
-      <NotesArea groupName={groupName} buttonClicked={buttonClicked} />
+      <NotesArea groupName={groupName} buttonClicked={buttonClicked} id={id} />
     );
   }
 

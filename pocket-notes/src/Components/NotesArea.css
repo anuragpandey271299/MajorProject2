@@ -26,3 +26,15 @@
     right: 0;
     margin: 10px;
 }
+.messageArea{
+    display: flex;
+    margin: 30px;
+}
+
+.messageList p{
+    margin-left: 30px;
+}
+.messageArea h4{
+    margin-left: 60px;
+    font-size: 25px;
+}

@@ -23,13 +23,14 @@ function CreateNotes(props) {
 
     const handleCreateNote = (e) => {
         e.preventDefault();
-        const newNote = { groupName, buttonClicked };
+        const newNote = { groupName, buttonClicked, id: Date.now() + Math.random() };
         if (validateGroupName()) {
             const updatedNotes = [...notes, newNote];
             localStorage.setItem('notesData', JSON.stringify(updatedNotes));
             setNotes(updatedNotes);
             props.setShowCreateNotes(false);
         }
+        console.log(newNote.id)
         setGroupName('');
         setButtonClicked('');
      };
