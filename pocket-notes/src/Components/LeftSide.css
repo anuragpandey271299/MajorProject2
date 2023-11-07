@@ -1,6 +1,7 @@
 .wrapperLeftSide{
     width: 350px;
     padding: 15px;
+    padding-right: 0;
 }
 .logo{
     display: flex;
@@ -13,7 +14,7 @@
 
 .profile{
     display: flex;
-    margin-top: 20px;
+    padding: 10px;
 }
 
 
@@ -48,3 +49,8 @@
 button:hover, .profile{
     cursor: pointer;
 }
+.selected {
+    background-color: #F7ECDC;
+
+    border-radius: 15px 0px 0 15px;
+  }
