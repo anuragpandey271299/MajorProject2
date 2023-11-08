@@ -12,6 +12,7 @@ function MainPage() {
       <NotesArea groupName={groupName} buttonClicked={buttonClicked} id={id} />
     );
   }
+  
 
   return (
     <div className='mainPage'>

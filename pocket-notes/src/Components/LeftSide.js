@@ -5,18 +5,29 @@ import './LeftSide.css';
 function LeftSide({ onProfileClick }) {
   const [showCreateNotes, setShowCreateNotes] = useState(false);
   const containerRef = useRef(null);
+  const [selectedProfile, setSelectedProfile] = useState(null);
+  const [isWrapperLeftSideClicked, setIsWrapperLeftSideClicked] = useState(false);
 
   const storedNotes = JSON.parse(localStorage.getItem('notesData'));
   console.log(storedNotes);
 
-  const [selectedProfile, setSelectedProfile] = useState(null);
-
   const handleProfileClick = (id) => {
     setSelectedProfile(id);
   }
+
   const handleCreateNotes = () => {
     setShowCreateNotes(true);
   }
+
+  const handleWrapperLeftSideClick = (event) => {
+      if (event.target.id !== 'create-notes-button') {
+          setIsWrapperLeftSideClicked(false)
+          console.log('wrapperLeftSide clicked');
+        }
+            setIsWrapperLeftSideClicked(true);
+        
+  };
+  
 
   useEffect(() => {
     const handleContainerClick = (event) => {
@@ -31,14 +42,17 @@ function LeftSide({ onProfileClick }) {
       document.removeEventListener('click', handleContainerClick);
     }
 
+    containerRef.current.addEventListener('click', handleWrapperLeftSideClick);
+
     return () => {
       document.removeEventListener('click', handleContainerClick);
+      containerRef.current.removeEventListener('click', handleWrapperLeftSideClick);
     };
   }, [showCreateNotes]);
 
-
   return (
-    <div ref={containerRef} className='wrapperLeftSide' >
+    <>
+    <div ref={containerRef} className={`wrapperLeftSide ${isWrapperLeftSideClicked ? 'clicked' : ''}`} >
       <h1>Pocket Notes</h1>
       <button onClick={handleCreateNotes}>Create Note Group</button>
       {showCreateNotes && <CreateNotes setShowCreateNotes={setShowCreateNotes} />}
@@ -63,6 +77,7 @@ function LeftSide({ onProfileClick }) {
         ))}
       </div>
     </div>
+    </>
   );
 }
 

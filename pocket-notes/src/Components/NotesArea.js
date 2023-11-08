@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import './NotesArea.css';
 import arrow from './images/arrow.png';
 
+
 function NotesArea({ groupName, buttonClicked, id }) {
   const [displayedMessages, setDisplayedMessages] = useState({});
   const [message, setMessage] = useState('');
